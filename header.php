@@ -8,6 +8,7 @@
 	<title>Inisope</title>
 </head>
 <body>
+	<img src="https://content.learntoday.info/CDA3315c_Summer_15/site/Media/Inisope_logo_01.jpg">
   <?php
 	session_start();
 	require 'menu.php';
