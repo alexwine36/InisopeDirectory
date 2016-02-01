@@ -2,7 +2,7 @@
 <div class="top-bar" id="menu">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">Inisope Inc.</li>
+      <li class="menu-text">Inisope, Inc.</li>
       
       <li><a href="/home.php">Home</a></li>
       <li><a href="/about.php">About</a></li>
