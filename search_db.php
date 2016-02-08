@@ -2,7 +2,7 @@
 <?php
 require 'header.php';
 
-echo '<h1>Search Results</h1>';
+
 
   $searchVal = $_POST['search'];
 
@@ -54,6 +54,8 @@ WHERE EMPLOYEES.LAST_NAME LIKE '{$searchVal}%' OR EMPLOYEES.FIRST_NAME LIKE '{$s
 
   if ($result->num_rows > 0) {
     //output data of each row
+    echo '<h1>Search Results <small>', $result->num_rows, '</small></h1>' ;
+//     echo $result->num_rows;
     echo '<table>
   <thead>
     <tr>
@@ -83,9 +85,11 @@ WHERE EMPLOYEES.LAST_NAME LIKE '{$searchVal}%' OR EMPLOYEES.FIRST_NAME LIKE '{$s
     echo '</tbody></table>';
     
     if ($result->num_rows == 0) {
-    echo "0 results <br>";
+    echo "<h2>0 results </h2>";
     }
     
+  }else {
+    echo "<h2><small>No Entries Found</small></h2>";
   }
   $conn->close();
     require 'footer.php'

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://preview.3jbtbb41sd3oko6rgxj3aduyzd01kyb9249qchs45oas8aor.box.codeanywhere.com/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/about.php</td>
+	<td></td>
+</tr>
+<!-- Search that returns no results -->
+<tr>
+	<td>type</td>
+	<td>name=search</td>
+	<td>Helen</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=small</td>
+	<td>No Entries Found</td>
+</tr>
+<!-- Search that returns one result -->
+<tr>
+	<td>type</td>
+	<td>name=search</td>
+	<td>Ifeoma</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=small</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//td[2]</td>
+	<td>Foley</td>
+</tr>
+<!-- Search that returns multiple results-->
+<tr>
+	<td>type</td>
+	<td>name=search</td>
+	<td>S</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=small</td>
+	<td>286</td>
+</tr>
+</tbody></table>
+</body>
+</html>
