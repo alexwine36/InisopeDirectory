@@ -1,7 +1,7 @@
 <?php
 	require 'header.php';
 
-echo $_SESSION['access'];
+// echo $_SESSION['access'];
 ?>
     <h1>Welcome to Inisope</h1>
 
