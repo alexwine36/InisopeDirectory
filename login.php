@@ -1,5 +1,6 @@
 <?php
 
+
 if(isset($_SESSION['user'])!=""){
   header('Location: /home.php');
 }
@@ -9,13 +10,15 @@ require 'header.php';
 if(isset($_POST['btn-login'])){
   $user_id = $_POST['uid'];
   $password = $_POST['pword'];
-  $sql = "SELECT EMPLOYEE_ID, PASSWORD, ACTIVE FROM USERS WHERE EMPLOYEE_ID='{$user_id}'";
+  echo $password;
+  $sql = "SELECT EMPLOYEE_ID, PASSWORD, ACTIVE FROM USERS WHERE EMPLOYEE_ID='{$user_id}' AND PASSWORD='{$password}' AND ACTIVE > 0";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 //   printf ("%d -- %s -- %s -- %s",$row["EMPLOYEE_ID"], $row["LAST_NAME"], $row["FIRST_NAME"], $row["PHONE_NUMBER"]);
 //      echo $row["EMPLOYEE_ID"], " - ", $row["ACTIVE"];
     $_SESSION['user'] = $row["EMPLOYEE_ID"];
+    $_SESSION['access'] = $row["ACTIVE"];
 //     header('Location: home.php');
   }
     if ($result->num_rows == 0) {

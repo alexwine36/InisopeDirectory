@@ -5,6 +5,36 @@ require 'header.php';
 echo '<h1>Search Results</h1>';
 
   $searchVal = $_POST['search'];
+
+$access = $_SESSION['access'];
+
+function getActions($access, $eid) {
+  
+  $user_id = $_SESSION['user'];
+  
+  $actions = '<form action="/show.php" method="post">
+	<input type="hidden" name="eid" value="'. $eid . '">
+  <button type="submit" class="button">Show</button>
+</form>';
+  
+  if($access == 2 or $user_id == $eid){
+    $actions .= '<form action="/edit.php" method="post">
+	<input type="hidden" name="eid" value="'. $eid . '">
+  <button type="submit" class="button">Edit</button>
+</form>';
+  }
+  if($access == 3){
+    $actions .= '<form action="/delete.php" method="post">
+	<input type="hidden" name="eid" value="'. $eid . '">
+  <button type="submit" class="button">Delete</button>
+</form>';
+  }
+  
+  
+  return $actions;
+}
+
+
   
 //   $sql = "SELECT EMPLOYEES.EMPLOYEE_ID,EMPLOYEES.FIRST_NAME, EMPLOYEES.LAST_NAME, EMPLOYEES.PHONE_NUMBER, EMPLOYEES.EMAIL, DEPARTMENT.DEPARTMENT_NAME FROM DEPARTMENTS WHERE EMPLOYEES.LAST_NAME LIKE '{$searchVal}%' OR EMPLOYEES.FIRST_NAME LIKE '{$searchVal}%'";
 $sql = "SELECT EMPLOYEES.EMPLOYEE_ID,EMPLOYEES.FIRST_NAME, EMPLOYEES.LAST_NAME, EMPLOYEES.PHONE_NUMBER, DEPARTMENTS.DEPARTMENT_NAME, EMPLOYEES.EMAIL, DEPARTMENTS.MANAGER_ID, LOCATIONS.STREET_ADDRESS, JOBS.JOB_TITLE
@@ -35,6 +65,7 @@ WHERE EMPLOYEES.LAST_NAME LIKE '{$searchVal}%' OR EMPLOYEES.FIRST_NAME LIKE '{$s
       <th>Manager ID</th>
       <th>Street Address</th>
       <th>Job Title</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>';
@@ -44,7 +75,9 @@ WHERE EMPLOYEES.LAST_NAME LIKE '{$searchVal}%' OR EMPLOYEES.FIRST_NAME LIKE '{$s
       } else {
         $jobTitle = "N/A";
       }
-        printf ("<tr><td>%d</td><td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%d</td> <td>%s</td> <td>%s</td></tr>",$row["EMPLOYEE_ID"], $row["LAST_NAME"], $row["FIRST_NAME"], $row["PHONE_NUMBER"], $row["DEPARTMENT_NAME"], $row["MANAGER_ID"], $row["STREET_ADDRESS"], $jobTitle);
+      
+      
+        printf ("<tr><td>%d</td><td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%d</td> <td>%s</td> <td>%s</td> <td>%s</td></tr>",$row["EMPLOYEE_ID"], $row["LAST_NAME"], $row["FIRST_NAME"], $row["PHONE_NUMBER"], $row["DEPARTMENT_NAME"], $row["MANAGER_ID"], $row["STREET_ADDRESS"], $jobTitle, getActions($access, $row['EMPLOYEE_ID']));
       
     }
     echo '</tbody></table>';
@@ -57,4 +90,5 @@ WHERE EMPLOYEES.LAST_NAME LIKE '{$searchVal}%' OR EMPLOYEES.FIRST_NAME LIKE '{$s
   $conn->close();
     require 'footer.php'
 ?>	
+
 

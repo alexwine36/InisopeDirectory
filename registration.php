@@ -3,13 +3,14 @@
   $eid = $_POST["eid"];
   $lname = $_POST["lname"];
 
-$sql = "SELECT EMPLOYEE_ID,FIRST_NAME, LAST_NAME, PHONE_NUMBER, EMAIL FROM EMPLOYEES WHERE LAST_NAME='{$lname}' AND EMPLOYEE_ID='{$eid}'";
+$sql = "SELECT EMPLOYEE_ID,FIRST_NAME, LAST_NAME, PHONE_NUMBER, DEPARTMENT_ID FROM EMPLOYEES WHERE LAST_NAME='{$lname}' AND EMPLOYEE_ID='{$eid}'";
   $result = $conn->query($sql);
 $fname = "";
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 //   printf ("%d -- %s -- %s -- %s",$row["EMPLOYEE_ID"], $row["LAST_NAME"], $row["FIRST_NAME"], $row["PHONE_NUMBER"]);
     $fname = $row["FIRST_NAME"];
+    $did = $row["DEPARTMENT_ID"];
   }
     if ($result->num_rows == 0) {
     echo "0 results <br>";
@@ -33,6 +34,7 @@ if($fname === ""){
     <input type="password" name="passconf" placeholder="Password Confirmation" required="true">
   </label>
   <input type="hidden" name="eid" value="', $eid ,'">
+    <input type="hidden" name="did" value="', $did ,'">
     <button type="submit" class="button">Submit</button>
 </form>';
 }
