@@ -12,6 +12,9 @@
               
       } else {
         echo "<li><a href='/logout.php'>Logout</a></li>";
+        if($_SESSION['access'] > 1) {
+          echo "<li><a href='/grocery_crud/index.php/welcome/employees'>Database</a></li>";
+        }
       }
    ?>
       
